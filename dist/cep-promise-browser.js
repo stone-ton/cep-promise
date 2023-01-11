@@ -542,12 +542,13 @@
   }
 
   function fetchWideNetService(cepWithLeftPad, configurations) {
-    var url = "https://ws.apicep.com/busca-cep/api/cep/".concat(cepWithLeftPad, ".json");
+    var cepWithDash = "".concat(cepWithLeftPad.slice(0, 5), "-").concat(cepWithLeftPad.slice(5));
+    var url = "https://cdn.apicep.com/file/apicep/".concat(cepWithDash, ".json");
     var options = {
       method: 'GET',
       mode: 'cors',
       headers: {
-        'content-type': 'application/json;charset=utf-8'
+        accept: 'application/json'
       },
       timeout: configurations.timeout || 30000
     };
