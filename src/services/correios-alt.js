@@ -1,6 +1,6 @@
 'use strict'
 
-import fetch from 'node-fetch'
+import fetchDefault from 'node-fetch'
 import ServiceError from '../errors/service.js'
 
 export default function fetchCorreiosAltAPIService(
@@ -17,6 +17,8 @@ export default function fetchCorreiosAltAPIService(
     body: `cep=${cepWithLeftPad}`,
     timeout: configurations.timeout || 30000
   }
+
+  const fetch = configurations.fetch || fetchDefault
 
   return fetch(url, options)
     .then(parseResponse)

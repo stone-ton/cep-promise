@@ -1,6 +1,6 @@
 'use strict'
 
-import fetch from 'node-fetch'
+import fetchDefault from 'node-fetch'
 import ServiceError from '../errors/service.js'
 
 export default function fetchViaCepService (cepWithLeftPad, configurations) {
@@ -17,6 +17,8 @@ export default function fetchViaCepService (cepWithLeftPad, configurations) {
   if (typeof window == 'undefined') {
     options.headers['user-agent'] = 'cep-promise'
   }
+
+  const fetch = configurations.fetch || fetchDefault
 
   return fetch(url, options)
     .then(analyzeAndParseResponse)
