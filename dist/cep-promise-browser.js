@@ -276,7 +276,7 @@
     return CepPromiseError;
   }( /*#__PURE__*/_wrapNativeSuper(Error));
 
-  function fetch (e, n) {
+  function fetchDefault (e, n) {
     return n = n || {}, new Promise(function (t, r) {
       var s = new XMLHttpRequest(),
           o = [],
@@ -362,6 +362,7 @@
       },
       timeout: configurations.timeout || 30000
     };
+    var fetch = configurations.fetch || fetchDefault;
     return fetch(url, options).then(analyzeAndParseResponse)["catch"](throwApplicationError);
   }
 
@@ -445,6 +446,7 @@
       body: "cep=".concat(cepWithLeftPad),
       timeout: configurations.timeout || 30000
     };
+    var fetch = configurations.fetch || fetchDefault;
     return fetch(url, options).then(parseResponse).then(extractCepValuesFromResponse)["catch"](throwApplicationError$1);
   }
 
@@ -498,6 +500,7 @@
       options.headers['user-agent'] = 'cep-promise';
     }
 
+    var fetch = configurations.fetch || fetchDefault;
     return fetch(url, options).then(analyzeAndParseResponse$1).then(checkForViaCepError).then(extractCepValuesFromResponse$1)["catch"](throwApplicationError$2);
   }
 
@@ -552,6 +555,7 @@
       },
       timeout: configurations.timeout || 30000
     };
+    var fetch = configurations.fetch || fetchDefault;
     return fetch(url, options).then(analyzeAndParseResponse$2).then(checkForWideNetError).then(extractCepValuesFromResponse$2)["catch"](throwApplicationError$3);
   }
 
@@ -605,6 +609,7 @@
       },
       timeout: configurations.timeout || 30000
     };
+    var fetch = configurations.fetch || fetchDefault;
     return fetch(url, options).then(parseResponse$1).then(extractCepValuesFromResponse$3)["catch"](throwApplicationError$4);
   }
 
