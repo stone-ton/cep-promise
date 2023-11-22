@@ -19,7 +19,8 @@ declare module 'cep-promise' {
 
   export interface Configurations {
     providers?: AvailableProviders[],
-    timeout?: number
+    timeout?: number,
+    fetch: (url: RequestInfo, init?: RequestInit) => Promise<Response>,
   }
 
   export function cep(cep: string | number, configurations?: Configurations): Promise<CEP>

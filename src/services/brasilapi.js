@@ -1,6 +1,6 @@
 'use strict'
 
-import fetch from 'node-fetch'
+import fetchDefault from 'node-fetch'
 import ServiceError from '../errors/service.js'
 
 export default function fetchBrasilAPIService (cepWithLeftPad, configurations) {
@@ -13,6 +13,8 @@ export default function fetchBrasilAPIService (cepWithLeftPad, configurations) {
     },
     timeout: configurations.timeout || 30000
   }
+
+  const fetch = configurations.fetch || fetchDefault
 
   return fetch(url, options)
     .then(parseResponse)
